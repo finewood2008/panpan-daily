@@ -4,17 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#191f22">
-<title>巷子 · 潘潘的小日子</title>
-<link rel="stylesheet" href="/panpan-daily/game.css?v=independent">
-<script src="/panpan-daily/world-time.js" defer></script>
-<script src="/panpan-daily/world.js" defer></script>
-<script src="/panpan-daily/map-view.js" defer></script>
-<script src="/panpan-daily/scene-effects.js" defer></script>
-<script src="/panpan-daily/alley.js" defer></script>
-<script src="/panpan-daily/interior-effects.js" defer></script>
-<script src="/panpan-daily/ambience.js" defer></script>
-<script src="/panpan-daily/panpan-actor.js" defer></script>
-<script src="/panpan-daily/game.js?v=independent" defer></script>
+<title>潘潘的小日子</title>
+<link rel="stylesheet" href="game.css">
+<link rel="stylesheet" href="comic-stall.css">
+<link rel="stylesheet" href="fortune-stall.css">
+<link rel="stylesheet" href="variety-shop.css">
+<script src="world-time.js" defer></script>
+<script src="street-layout.js" defer></script>
+<script src="world.js" defer></script>
+<script src="map-view.js" defer></script>
+<script src="scene-effects.js" defer></script>
+<script src="alley.js" defer></script>
+<script src="interior-effects.js" defer></script>
+<script src="ambience.js" defer></script>
+<script src="panpan-actor.js" defer></script>
+<script src="comic-stall.js" defer></script>
+<script src="fortune-stall.js" defer></script>
+<script src="stall-photo.js" defer></script>
+<script src="variety-shop.js" defer></script>
+<script src="game.js" defer></script>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true">
@@ -22,53 +30,97 @@
 <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14m6-12v14"/></symbol>
 <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
 <symbol id="i-visit" viewBox="0 0 24 24"><path d="M12 20.5 4.4 13a4.8 4.8 0 0 1 6.8-6.8l.8.8.8-.8a4.8 4.8 0 0 1 6.8 6.8z"/></symbol>
+<symbol id="i-preview" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></symbol>
 <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
 <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.1"/></symbol>
 <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
 </svg>
 <main class="game">
-<header class="masthead world-header">
-    <a class="brand world-brand" href="/panpan-daily/"><img src="/panpan-daily/assets/panpan-2d/portrait.webp" width="40" height="40" alt=""><span>潘潘的小日子</span></a>
-    <button class="clock" id="clock-button" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="查看时间和天气"><svg aria-hidden="true"><use href="#i-clock"/></svg><span id="clock"></span></button>
-    <a class="world-comics" href="/panpan-daily/comics/">漫画</a>
+<header class="masthead">
+    <a class="brand" href="../" aria-label="潘潘的小日子，回漫画首页"><img src="../assets/panpan-2d/portrait.webp" alt=""><h1>潘潘<span>的小日子</span></h1></a>
+    <button class="clock" id="clock-button" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="查看时间和天气"><svg aria-hidden="true"><use href="#i-clock"/></svg><span id="clock"></span><span id="clock-speed" hidden></span></button>
     <button id="about" class="icon-button" aria-label="来访说明" type="button"><svg aria-hidden="true"><use href="#i-info"/></svg></button>
 </header>
-
 <section class="stage" id="stage" data-scene="alley" aria-label="潘潘的生活场景">
     <div class="panorama" id="panorama" tabindex="0" aria-label="左右拖动街景，或用方向键移动">
         <div class="city-art" id="city-art">
             <div class="city-world">
-                <img class="city-picture" id="city-picture" src="/panpan-daily/assets/neighborhood-no-stool.webp" alt="高楼环绕的老城中村，窄巷从核心街区向两侧延伸" draggable="false">
+                <img class="city-picture" id="city-picture" src="../assets/neighborhood-variety-shop.webp" alt="城中村路口的漫画摊和算命摊挨在一起，榕树旁是大头贴铺，巷尾有一家杂货铺" draggable="false">
+                <div class="street-lights-off" aria-hidden="true"></div>
                 <canvas id="alley-ambience" class="alley-ambience" aria-hidden="true"></canvas>
-                <div class="street-character" id="street-character"></div>
+                <div class="street-character" id="street-character"><img class="street-umbrella" src="../assets/panpan-2d/umbrella-ground.webp" alt="" aria-hidden="true"><img class="street-groceries" src="../assets/panpan-2d/grocery-ground.webp" alt="" aria-hidden="true"></div>
+                <div class="street-foreground" id="street-foreground" aria-hidden="true"></div>
             </div>
+            <div class="street-lights" aria-hidden="true"></div>
             <div id="hotspots" class="hotspots" role="group" aria-label="街坊地点"></div>
         </div>
     </div>
     <div class="scenery">
-        <img class="setting" id="setting" src="/panpan-daily/assets/room-raised-computer-stool.webp" alt="">
-        <img id="shower-curtain" class="setting" src="/panpan-daily/assets/bathroom-curtain.webp" alt="淋浴帘已拉上" hidden>
+        <img class="setting" id="setting" src="../assets/room-bathroom-passage.webp" alt="">
+        <div class="setting stall-display" aria-hidden="true"><div id="stall-covers" class="stall-cover-plane"></div></div>
+        <img id="shower-curtain" class="setting" src="../assets/bathroom-curtain.webp" alt="淋浴帘已拉上" hidden>
+        <div class="bathroom-doorway" aria-hidden="true"></div>
+        <div id="bathroom-door-leaf" class="bathroom-door-leaf" aria-hidden="true"></div>
         <canvas id="window-view" class="window-view" width="1672" height="941" aria-hidden="true"></canvas>
+        <div class="room-lights-off" aria-hidden="true"></div>
         <canvas id="interior-ambience" class="interior-ambience" aria-hidden="true"></canvas>
+        <div class="fortune-cup-gap setting" aria-hidden="true"></div>
+        <div class="fortune-banner" aria-hidden="true"><span>潘半仙</span></div>
+        <div id="fortune-host" class="fortune-host" role="img" aria-label="戴着歪帽和小圆镜的算命先生潘潘" hidden>
+            <div class="fortune-entrance"><div class="fortune-arrival-sprite"></div></div>
+            <div class="fortune-host-feet"></div>
+            <div class="fortune-host-costume"></div>
+        </div>
+        <div class="fortune-table-slip" aria-hidden="true"></div>
+        <img class="tea-cup-table" src="../assets/panpan-2d/tea-cup-table.webp" alt="" aria-hidden="true">
+        <img class="book-table" src="../assets/panpan-2d/book-table.webp" alt="" aria-hidden="true">
+        <img class="ledger-table" src="../assets/panpan-2d/ledger-table.webp" alt="" aria-hidden="true">
+        <img class="rag-table" src="../assets/panpan-2d/rag-table.webp" alt="" aria-hidden="true">
+        <img class="spoon-table" src="../assets/panpan-2d/spoon-table.webp" alt="" aria-hidden="true">
+        <img class="receipt-table" src="../assets/panpan-2d/receipt-table.webp" alt="" aria-hidden="true">
+        <img class="bowl-table" src="../assets/panpan-2d/bowl-table.webp" alt="" aria-hidden="true">
+        <img class="extra-parcel-table" src="../assets/panpan-2d/extra-parcel-table.webp" alt="" aria-hidden="true">
+        <img class="stamp-table" src="../assets/panpan-2d/stamp-table.webp" alt="" aria-hidden="true">
+        <img class="main-parcel-table" src="../assets/panpan-2d/main-parcel-table.webp" alt="" aria-hidden="true">
+        <span class="parcel-mark-table" aria-hidden="true"></span>
+        <img class="dumbbell-floor" src="../assets/panpan-2d/dumbbell-floor.webp" alt="" aria-hidden="true">
+        <img class="alarm-floor" src="../assets/panpan-2d/alarm-floor.webp" alt="" aria-hidden="true">
+        <div class="bath-cap-rest" aria-hidden="true"><img src="../assets/panpan-2d/shower-cap-rest.webp" alt=""></div>
+        <div class="bath-brush-rest" aria-hidden="true"><img src="../assets/panpan-2d/toothbrush-rest.webp" alt=""></div>
         <div class="shadow" id="shadow" hidden></div>
         <div class="actor" id="actor" role="img" aria-label="潘潘" hidden></div>
         <canvas class="sleep-frame" id="sleep-frame" width="1672" height="941" role="img" aria-label="潘潘躺在床上" hidden></canvas>
         <div class="foreground" id="foreground" aria-hidden="true" hidden></div>
+        <div class="home-shoes-foreground" id="home-shoes-foreground" aria-hidden="true" hidden></div>
+        <img class="chopsticks-table" src="../assets/panpan-2d/chopsticks-table.webp" alt="" aria-hidden="true">
+        <div class="chopsticks-hand-overlay" aria-hidden="true"></div>
         <div class="veil"></div>
         <div class="warmth"></div>
+        <button id="bathroom-room-entry" class="bathroom-room-entry" type="button" aria-label="从卫生间回小屋" hidden></button>
+        <button id="home-bathroom-entry" class="home-bathroom-entry" type="button" aria-label="从小屋进入卫生间" hidden></button>
+        <button class="scene-prop" data-place="fortune" data-needs-panpan type="button" aria-label="从签筒抽签" aria-controls="fortune-desk" aria-expanded="false" hidden></button>
+        <button class="scene-prop" data-place="stall" type="button" aria-label="翻桌上的漫画" aria-haspopup="dialog" hidden></button>
+        <button class="scene-prop" data-place="pack" type="button" aria-label="逛货架上的周边" aria-haspopup="dialog" hidden></button>
+        <button class="scene-prop" data-place="secondhand" data-needs-panpan type="button" aria-label="用大头贴机合影" aria-haspopup="dialog" hidden></button>
+        <button class="scene-prop" data-place="noodle" type="button" aria-label="读面馆的故事" aria-haspopup="dialog" hidden></button>
+        <button class="scene-prop" data-place="home" type="button" aria-label="翻窗边的生活手记" aria-haspopup="dialog" hidden></button>
     </div>
     <header class="location">
         <div id="address" class="address">深圳 · 城中村</div>
         <h2 id="place">城中村的巷子</h2>
         <span id="presence" class="presence" hidden></span>
+        <button id="end-preview" class="replay-entry" type="button" hidden>回到日程</button>
         <button id="bathroom-door" class="replay-entry" type="button" hidden>卫生间</button>
         <button id="bathroom-back" class="replay-entry" type="button" hidden>回小屋</button>
     </header>
     <p class="thought-bubble" id="thought-bubble" role="status" hidden></p>
+    <section class="fortune-speech" id="fortune-speech" aria-label="潘潘的对白" tabindex="-1" hidden></section>
     <article class="note" id="note" hidden>
         <div class="note-copy"><p id="note-tag" class="note-tag"></p><p id="note-line" class="note-line" aria-live="polite"></p></div>
     </article>
 </section>
+<section id="fortune-desk" class="fortune-desk" aria-labelledby="fortune-desk-title" hidden></section>
+<p id="alley-update" class="alley-update" hidden></p>
 <nav class="map-camera" id="map-camera" aria-label="街景视角">
     <button type="button" data-view="west" aria-label="向左看">←</button>
     <button type="button" data-view="center">回到巷子</button>
@@ -78,11 +130,17 @@
     <button type="button" id="home" aria-pressed="false"><svg aria-hidden="true"><use href="#i-home"/></svg><span>小屋</span></button>
     <button type="button" id="map" aria-pressed="true"><svg aria-hidden="true"><use href="#i-map"/></svg><span>巷子</span></button>
     <button type="button" id="visit" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#i-visit"/></svg><span>看潘潘</span></button>
+    <button type="button" id="preview" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#i-preview"/></svg><span>预览潘潘</span></button>
     <button type="button" id="journal" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#i-mail"/></svg><span>生活手记</span></button>
 </nav>
+<p id="sleep-notice" class="sleep-notice" role="status"></p>
 </main>
 <dialog id="sheet" aria-labelledby="sheet-title">
-    <header class="sheet-head"><h2 id="sheet-title"></h2><button id="close" type="button" class="sheet-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button></header>
+    <header class="sheet-head">
+        <button id="comic-back" type="button" class="sheet-comic-back" aria-label="返回漫画目录" hidden>←</button>
+        <h2 id="sheet-title"></h2>
+        <button id="close" type="button" class="sheet-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+    </header>
     <div id="sheet-body"></div>
 </dialog>
 </body>

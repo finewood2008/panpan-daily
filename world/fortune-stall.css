@@ -1,0 +1,253 @@
+.fortune-host,.fortune-banner,.fortune-cup-gap,.fortune-table-slip { pointer-events:none; }
+.stage:not([data-scene="fortune"]) :is(.fortune-banner,.fortune-cup-gap,.fortune-table-slip) { display:none; }
+
+.fortune-host {
+    position:absolute; inset:0;
+    --fortune-stance:59.6%; --fortune-floor:94%; --fortune-host-size:47%;
+    --fortune-entrance-time:2160ms;
+    filter:brightness(calc(1.06 - .22 * var(--darkness,0))) saturate(.91);
+}
+:is(.fortune-host,.fortune-entrance)::before {
+    content:""; position:absolute; left:var(--fortune-stance); top:calc(var(--fortune-floor) - 2%);
+    width:8.2%; height:4%; transform:translateX(-50%);
+    background:radial-gradient(ellipse,#291c19b0 0,#341f255e 45%,transparent 72%);
+}
+.fortune-host-costume,.fortune-host-feet,.fortune-arrival-sprite {
+    position:absolute; left:var(--fortune-stance); transform:translateX(-50%); background-repeat:no-repeat;
+}
+.fortune-host-costume {
+    bottom:calc(100% - var(--fortune-floor) + 4.9%); height:var(--fortune-host-size); aspect-ratio:512/617;
+    background-image:url("../assets/panpan-2d/fortune-master.webp");
+    background-size:200% 200%; background-position:0 0;
+    transform-origin:50% 97%;
+    filter:drop-shadow(2px 6px 10px #35201053);
+}
+/* Keep the same planted feet under each costume gesture. */
+.fortune-host-feet {
+    bottom:calc(100% - var(--fortune-floor)); height:var(--fortune-host-size); aspect-ratio:1;
+    background-image:url("../assets/panpan-2d/fortune-gestures.webp"); background-size:600% 200%;
+    background-position:0 0;
+    clip-path:inset(82.5% 24% 0 24%); filter:brightness(.85);
+}
+.stage[data-fortune-pose="shake"] .fortune-host-costume {
+    background-position:100% 0; transform-origin:50% 91%;
+    animation:fortune-shake .29s ease-in-out 3;
+}
+.stage[data-fortune-pose="read"] .fortune-host-costume {
+    background-position:0 100%; animation:fortune-scrutinize 1.55s ease-in-out 1;
+}
+.stage[data-fortune-pose="offer"] .fortune-host-costume { background-position:100% 100%; }
+.fortune-entrance { display:none; position:absolute; inset:0; }
+.fortune-arrival-sprite {
+    bottom:calc(100% - var(--fortune-floor)); height:52%; aspect-ratio:340/460;
+    background:url("../assets/panpan-2d/fortune-arrival.webp") no-repeat 0 0/600% 300%;
+    filter:drop-shadow(2px 5px 7px #3520104b);
+}
+.stage[data-fortune-arrival] .fortune-entrance {
+    display:block; animation:fortune-entry-path var(--fortune-entrance-time) linear both;
+}
+.stage[data-fortune-arrival] .fortune-arrival-sprite {
+    animation:fortune-arrival-frames var(--fortune-entrance-time) step-end both;
+}
+.stage[data-fortune-arrival] .fortune-host::before,
+.stage[data-fortune-arrival] :is(.fortune-host-costume,.fortune-host-feet) { visibility:hidden; }
+.stage[data-fortune-arrival] .scene-prop[data-place="fortune"] { cursor:default; }
+.fortune-entrance::after {
+    content:""; position:absolute; left:var(--fortune-stance); top:78%;
+    width:12%; height:8%; border:2px solid #f2bd82; border-top-color:transparent; border-left-color:transparent;
+    border-radius:50%; opacity:0; pointer-events:none;
+    animation:fortune-sleeve-arc var(--fortune-entrance-time) ease-out both;
+}
+@keyframes fortune-entry-path {
+    0% { transform:translate(19%,-4%); }
+    35% { transform:translate(2.8%,-.65%); }
+    42%,100% { transform:translate(0,0); }
+}
+@keyframes fortune-arrival-frames {
+    /* Walk, plant both feet, then turn through the back into the costume. */
+    0%,28% { background-position:0 0; }
+    4.7%,32.6% { background-position:20% 0; }
+    9.4%,37.4% { background-position:40% 0; }
+    14.1% { background-position:60% 0; }
+    18.8% { background-position:80% 0; }
+    23.5% { background-position:100% 0; }
+    42% { background-position:0 50%; }
+    47% { background-position:20% 50%; }
+    52% { background-position:40% 50%; }
+    57% { background-position:60% 50%; }
+    62% { background-position:80% 50%; }
+    67% { background-position:100% 50%; }
+    72% { background-position:0 100%; }
+    75% { background-position:20% 100%; }
+    80% { background-position:40% 100%; }
+    85% { background-position:60% 100%; }
+    91%,100% { background-position:80% 100%; }
+}
+@keyframes fortune-sleeve-arc {
+    0%,66% { transform:translateX(-55%) rotate(-28deg) scale(.68); opacity:0; }
+    75% { transform:translateX(-50%) rotate(-5deg) scale(1); opacity:.58; }
+    86%,100% { transform:translateX(-48%) rotate(18deg) scale(1.13); opacity:0; }
+}
+@keyframes fortune-shake {
+    0%,100% { transform:translateX(-50%) rotate(0); }
+    24% { transform:translateX(-51.3%) rotate(-3.2deg); }
+    70% { transform:translateX(-48.8%) rotate(2deg); }
+}
+@keyframes fortune-scrutinize {
+    0%,100% { transform:translateX(-50%); }
+    40% { transform:translate(-50%,1.5%) rotate(-1deg); }
+}
+
+.fortune-cup-gap {
+    display:none;
+    background:url("../assets/inside-road-fortune-stall.webp") 0 0/100% 100% no-repeat;
+    transform-origin:0 0; transform:translate(-7.3%,-.82%) scaleX(1.4);
+    clip-path:polygon(28.14% 48.77%,30.86% 48.27%,31.96% 49.87%,31.96% 67.27%,31.57% 68.49%,28.21% 68.37%,28.1% 66.57%);
+}
+.stage[data-scene="fortune"][data-fortune-pose="shake"] .fortune-cup-gap { display:block; }
+.fortune-banner {
+    display:block; position:absolute; left:66.2%; top:23%; width:clamp(33px,6.4%,92px); height:27%;
+    transform:rotate(3deg); transform-origin:50% 0;
+    border-inline:1px solid #6d4319;
+    color:#45311f; background:repeating-linear-gradient(0deg,#61432712 0 1px,transparent 1px 3px),linear-gradient(105deg,#a97d50,#d7b17a 18%,#e5c892 66%,#b48b5c);
+    border-radius:2px 2px 8% 5%; box-shadow:3px 6px 7px #2c1e1780,inset 0 -8px #8a533646;
+    filter:brightness(calc(1 - .22 * var(--darkness,0)));
+}
+.fortune-banner::before {
+    content:""; position:absolute; inset:-3px -13% auto; height:6px; border-radius:50px;
+    background:linear-gradient(#ba895036,#6e411f),#a86c37; box-shadow:0 1px 3px #302117b8;
+}
+.fortune-banner::after {
+    content:""; position:absolute; inset:0 16% auto; height:23px;
+    transform:translateY(-89%); border:1px solid #74502c; border-bottom:0; clip-path:polygon(50% 0,100% 100%,94% 100%,50% 12%,6% 100%,0 100%);
+    background:#85603a;
+}
+.fortune-banner span {
+    position:absolute; inset:8% 0 9%; display:grid; place-items:center;
+    writing-mode:vertical-rl; margin:auto; width:max-content;
+    font:900 clamp(14px,2.25vw,34px)/1 var(--serif); letter-spacing:.11em;
+    text-shadow:1px 1px #f6d69b6b;
+}
+.fortune-table-slip {
+    display:none; position:absolute; z-index:1; left:45.6%; top:62.7%;
+    width:4.5%; height:1.1%; transform:rotate(-15deg);
+    border-radius:1px 2px 2px 1px; background:linear-gradient(90deg,#edc185,#d5a066);
+    box-shadow:1px 2px 2px #4a2e22;
+}
+.stage[data-fortune-open][data-fortune-pose="read"] .fortune-table-slip { display:block; animation:fortune-slip-drop .34s ease-out both; }
+@keyframes fortune-slip-drop {
+    from { transform:translate(-120%,-340%) rotate(23deg); opacity:0; }
+    to { transform:rotate(-15deg); opacity:1; }
+}
+
+.stage[data-scene="fortune"][data-fortune-open] { height:clamp(320px,53svh,530px); }
+.stage[data-fortune-open] .scene-prop[data-place="fortune"]::before,
+.stage[data-fortune-open] .scene-prop[data-place="fortune"]::after { animation:none; opacity:0; }
+.stage[data-motion="off"] :is(.fortune-entrance,.fortune-arrival-sprite,.fortune-host-costume,.fortune-table-slip),
+.stage[data-motion="off"] .fortune-entrance::after { animation:none!important; }
+
+.fortune-speech {
+    position:absolute; z-index:6; padding:12px 13px 6px; border:1px solid #e2cda9; border-radius:14px;
+    color:#3b2920; background:#fff3dc; box-shadow:0 7px 22px #25180d75;
+}
+.fortune-speech:focus { outline:none; }
+.fortune-speech::after {
+    content:""; position:absolute; top:var(--fortune-speech-tail,25px); width:12px; height:17px;
+    background:#fff3dc; transform:translateY(-50%); pointer-events:none;
+}
+.fortune-speech[data-side="right"]::after { left:-11px; clip-path:polygon(0 50%,100% 0,100% 100%); }
+.fortune-speech[data-side="left"]::after { right:-11px; clip-path:polygon(0 0,100% 50%,0 100%); }
+.fortune-speech-speaker { display:flex; gap:7px; flex-wrap:wrap; align-items:baseline; margin:0 0 5px; color:#743f2d; font-size:13px; font-weight:750; }
+.fortune-speech-speaker span { color:#705641; font-size:12px; font-weight:550; }
+.fortune-speech-line {
+    margin:0 0 6px; overflow-wrap:anywhere;
+    font:650 clamp(14px,1.6vw,18px)/1.56 var(--serif);
+}
+.fortune-speech-controls { display:flex; justify-content:space-between; gap:3px; margin-top:6px; }
+.fortune-speech-controls button {
+    min-height:44px; min-width:44px; padding:3px 5px;
+    border:0; border-radius:7px; background:none; color:#74402d; font-size:13px; font-weight:650;
+}
+.fortune-speech-controls button:is(:hover,:focus-visible):not(:disabled) { background:#e8ceab; }
+.fortune-speech-controls .fortune-speech-prev { font-size:18px; }
+.fortune-speech-prev:disabled { opacity:0; cursor:default; }
+
+.fortune-desk {
+    max-width:786px; margin:11px auto 0; padding:16px clamp(13px,2.5vw,24px);
+    color:#f2e3cb; background:#28342d; border:1px solid #cfb28752; border-radius:12px;
+    box-shadow:0 12px 23px #0b16115e;
+}
+.fortune-desk-head,.fortune-desk-tools,.fortune-controls,.fortune-read-controls,.fortune-result-controls {
+    display:flex; align-items:center; gap:10px;
+}
+.fortune-desk-head { justify-content:space-between; margin:0 0 8px; }
+.fortune-desk-head h3 { margin:0; font:700 clamp(19px,3.6vw,25px)/1.1 var(--serif); }
+.fortune-desk-head h3:focus,.fortune-result:focus,.fortune-sign:focus { outline:none; }
+.fortune-desk-tools { gap:3px; flex:none; }
+.fortune-link {
+    padding:8px 10px; min-height:44px; border:0; border-radius:5px; background:none;
+    color:#ebd2a8; font-size:14px;
+}
+.fortune-link:is(:hover,:focus-visible) { background:#fff3d218; }
+.fortune-form label { display:block; margin-bottom:7px; font-size:14px; }
+.fortune-controls input,.fortune-primary {
+    min-height:44px; padding:9px 12px; border-radius:6px; border:1px solid #c1a679; font:inherit;
+}
+.fortune-controls input {
+    flex:1; min-width:0; color:#322a25; background:#fff5e3; font-size:16px;
+}
+.fortune-controls input::placeholder { color:#755c4d; }
+.fortune-primary { flex:none; color:#fff2d7; background:#7b392f; font-weight:650; }
+.fortune-primary:is(:hover,:focus-visible) { background:#8f4639; }
+.fortune-primary:disabled { opacity:.65; cursor:default; }
+.fortune-notice,.fortune-save-note { margin:9px 0 0; color:#e0cbaa; font-size:14px; }
+.fortune-notice:empty,.fortune-save-note:empty { display:none; }
+.fortune-paper {
+    border:1px solid #d8b594; border-inline-start:4px solid #9b563e; border-radius:4px;
+    padding:13px 14px; color:#3d3025; background:linear-gradient(115deg,#fff1d9,#f3dbb6);
+    box-shadow:0 4px 12px #1c110939;
+}
+.fortune-paper h4 { font:700 25px/1.17 var(--serif); margin:0 0 3px; color:#683327; }
+.fortune-paper p { margin:0; font-size:15px; line-height:1.6; }
+.fortune-sign {
+    text-align:center; padding:12px 15px 16px;
+    background:linear-gradient(110deg,#fbefd5,#f3d7aa);
+}
+.fortune-paper .fortune-sign-meta {
+    display:flex; justify-content:space-between; color:#744e39;
+    font-size:12px; line-height:1.3; letter-spacing:.08em;
+}
+.fortune-sign .fortune-card-title { margin:4px 0 5px; }
+.fortune-verse {
+    margin:5px 0 0; color:#563727;
+    font:650 clamp(17px,3.9vw,22px)/1.56 var(--serif);
+}
+.fortune-question {
+    display:flex; align-items:baseline; gap:7px; margin:10px 0 8px;
+    color:#e8d7b9; font-size:14px; line-height:1.55;
+}
+.fortune-question strong { flex:none; font-weight:650; }
+.fortune-question-copy { min-width:0; overflow-wrap:anywhere; }
+.fortune-question mark { color:#ffedcd; background:#98604666; border-bottom:1px solid #dcab76; }
+.fortune-result { margin-top:12px; }
+.fortune-meaning,.fortune-for-you { margin-top:9px; }
+.fortune-meaning strong,.fortune-for-you strong { color:#7e4836; font-size:13px; }
+.fortune-meaning q { color:#673524; margin-inline-end:.38em; quotes:"「" "」"; font-family:var(--serif); }
+.fortune-saved-sign { padding-bottom:11px; margin-bottom:10px; border-bottom:1px solid #ad74464d; }
+.fortune-saved-sign .fortune-card-title { margin-top:4px; }
+.fortune-paper .fortune-today {
+    display:flex; align-items:baseline; gap:8px; margin-top:10px; padding-top:8px; border-top:1px solid #ad74464d;
+}
+.fortune-today strong { flex:none; font:700 16px var(--serif); color:#873e2e; }
+.fortune-result-controls { margin-top:10px; }
+.fortune-box > p { margin:0; font:500 15px/1.6 var(--serif); }
+.fortune-box details { border-top:1px solid #ccaf7252; }
+.fortune-box summary { padding:11px 1px; cursor:pointer; }
+.fortune-box details .fortune-paper { margin-bottom:10px; }
+@media(max-width:500px) {
+    .stage[data-scene="fortune"][data-fortune-open] { height:min(380px,calc((100vw - 22px) * .98)); }
+    .fortune-desk { padding-block:8px 13px; }
+    .fortune-controls { gap:6px; }
+    .fortune-primary { padding-inline:8px; font-size:14px; }
+    .fortune-controls input { padding-inline:7px; }
+}

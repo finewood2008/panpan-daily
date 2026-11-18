@@ -1,0 +1,369 @@
+[
+  {
+    "slug": "zaima",
+    "title": "在吗？",
+    "intro": "三行请假理由，删到只剩两个字。",
+    "place": "二楼小屋",
+    "panels": [
+      {
+        "alt": "潘潘坐在床上，低头打字。",
+        "label": "请假草稿",
+        "caption": "老板您好，我想请明天下午半天假……",
+        "position": "top-left"
+      },
+      {
+        "alt": "潘潘盯着手机，拇指悬在发送键上。",
+        "label": "潘潘 · 已发送",
+        "caption": "在吗",
+        "position": "top-right"
+      },
+      {
+        "alt": "手机突然亮了，潘潘的耳朵一抖。",
+        "label": "老板 · 秒回",
+        "caption": "？",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘缩进被窝，把手机扣在被子上，底下还透着光。",
+        "caption": "装睡的话，\n应该不用回吧。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "yi-gen-mian",
+    "title": "一根面",
+    "intro": "潘潘想先吃口面，再吃蛋。",
+    "place": "巷口面馆",
+    "panels": [
+      {
+        "alt": "潘潘坐在巷口面馆，桌上有一碗热面和半颗卤蛋。",
+        "caption": "好东西留到最后。",
+        "position": "top-left"
+      },
+      {
+        "alt": "他用筷子挑起一根长面，另一头还在碗里。",
+        "caption": "先吃一根。",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘站到了凳子上，筷子举过头顶，面条还没到底。",
+        "caption": "……还是这根。",
+        "position": "top-right"
+      },
+      {
+        "alt": "面碗空了。潘潘端起留到最后的半颗蛋。",
+        "caption": "蛋凉了。\n凳子倒是坐热了。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "jiao-dai",
+    "title": "胶带",
+    "intro": "下班前，只剩一个箱子。",
+    "place": "打包点",
+    "panels": [
+      {
+        "alt": "潘潘举起胶带，面前是一个敞开的纸箱。",
+        "caption": "最后一个，很快。",
+        "position": "top-left"
+      },
+      {
+        "alt": "他扯开胶带，卷起来的胶带头粘住了另一只爪子。",
+        "caption": "粘住了。",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘试着拿另一只爪子去揭，两只爪子粘在一起。",
+        "caption": "我用这只手揭……",
+        "position": "top-right"
+      },
+      {
+        "alt": "纸箱原样敞着，潘潘举着被胶带粘住的两只爪子。",
+        "caption": "老板，这单先别寄。\n我还在上面。",
+        "position": "top-left"
+      }
+    ]
+  },
+  {
+    "slug": "bei-yong-xian",
+    "title": "备用线",
+    "intro": "旧线要掰到一个角度才充得上电。",
+    "place": "二手电器铺",
+    "panels": [
+      {
+        "alt": "潘潘把缠着白色胶布的旧充电线放到柜台上。",
+        "caption": "老板，配根一样的。",
+        "position": "top-left"
+      },
+      {
+        "alt": "两根线并排放着，新线是干净的一圈，旧线的接头裹着白胶布。",
+        "caption": "老板：新的好使。",
+        "position": "top-right"
+      },
+      {
+        "alt": "老板伸手要收走旧线，潘潘下意识用爪子按住。",
+        "caption": "老板：旧的帮你扔了？",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘仔细卷起旧线，往小包里塞，新线还留在柜台上。",
+        "caption": "旧的我留着。\n万一新的坏了呢。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "mu-shao",
+    "title": "木勺演唱会",
+    "intro": "饭还没好，木勺已经上台了。",
+    "place": "二楼小屋",
+    "panels": [
+      {
+        "alt": "潘潘握着木勺，在小屋里等桌上的电饭锅。",
+        "caption": "等饭的第十分钟。",
+        "position": "top-left"
+      },
+      {
+        "alt": "他闭上眼，把木勺举到嘴边当麦克风。",
+        "caption": "接下来这首，\n送给还没熟的饭。",
+        "position": "top-right"
+      },
+      {
+        "alt": "电饭锅的指示灯变绿，潘潘举着木勺愣住了。",
+        "caption": "啪嗒。",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘对着电饭锅鞠了一躬，手里还拿着木勺。",
+        "caption": "谢谢。\n掌声很克制。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "yu-san",
+    "title": "雨伞",
+    "intro": "借出去的是把歪伞。",
+    "place": "榕树旁的小巷",
+    "panels": [
+      {
+        "alt": "雨中，潘潘递出一把断了一根伞骨的黄伞。",
+        "caption": "这边漏，\n你往另一边站。",
+        "position": "top-left"
+      },
+      {
+        "alt": "邻居从门口递给潘潘一把崭新的深青色折叠伞。",
+        "caption": "邻居：你的坏了，拿这把。",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘抱着合拢的新伞，在门檐下看雨。",
+        "caption": "这么新，弄湿了不好吧。",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘冒雨走过窄巷，把合拢的新伞紧紧抱在怀里。",
+        "caption": "还好，伞没淋着。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "nao-zhong",
+    "title": "闹钟",
+    "intro": "天刚亮，潘潘先起来处理了一件事。",
+    "place": "二楼小屋",
+    "panels": [
+      {
+        "alt": "红色双铃闹钟在桌上响，潘潘从格子被子里睁开眼。"
+      },
+      {
+        "alt": "潘潘伸出一只爪子按住闹钟的铃。",
+        "caption": "我醒了。",
+        "position": "top-left"
+      },
+      {
+        "alt": "闹钟停了，潘潘闭着眼往枕头上躺回去。"
+      },
+      {
+        "alt": "潘潘侧躺在被窝里，身边的闹钟也被盖上了被子，只露出红色的铃。",
+        "caption": "等会儿我叫你。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "chao-shang",
+    "title": "朝上",
+    "intro": "打包点今天的第一个纸箱。",
+    "place": "打包点",
+    "panels": [
+      {
+        "alt": "打包点的工作台上摆着一个纸箱，潘潘举着木头印章。",
+        "caption": "这边朝上。",
+        "position": "top-left"
+      },
+      {
+        "alt": "印章抬了起来，纸箱侧面的黑箭头朝下。"
+      },
+      {
+        "alt": "潘潘双爪托着纸箱，开始把纸箱倒过来。"
+      },
+      {
+        "alt": "纸箱倒扣在桌上，胶带封口靠下，箭头朝上。",
+        "caption": "这边朝上。",
+        "position": "top-left"
+      }
+    ]
+  },
+  {
+    "slug": "la-jiao",
+    "title": "一粒辣椒",
+    "intro": "今天的面里有一点红。",
+    "place": "巷口面馆",
+    "panels": [
+      {
+        "alt": "潘潘夹起一口面，面上有一点红辣椒。"
+      },
+      {
+        "alt": "他把带辣椒的面送到嘴边。",
+        "caption": "嗯，还行。",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘腮帮通红，眼里冒着泪，抓起水杯猛喝。"
+      },
+      {
+        "alt": "潘潘把剩下的一小圈辣椒单独夹进小碟里，水杯已经快空了。",
+        "caption": "一天一粒。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "ju-zi",
+    "title": "最后一个橘子",
+    "intro": "两个橘子，潘潘只打算买一个。",
+    "place": "路口水果摊",
+    "panels": [
+      {
+        "alt": "柜台上摆着两个差不多的橘子，潘潘的爪子停在它们上方。"
+      },
+      {
+        "alt": "他挑了一个递给摊主，另一个留在柜台上。",
+        "caption": "要这个。",
+        "position": "top-right"
+      },
+      {
+        "alt": "摊主把选中的橘子放上秤，潘潘却望向留在柜台上的那个。"
+      },
+      {
+        "alt": "潘潘抱着纸袋走在巷子里，袋口露出两个橘子。",
+        "caption": "最后一个不能留。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "rang-lu",
+    "title": "让路",
+    "intro": "潘潘和一只猫，都想先让对方过去。",
+    "place": "巷子",
+    "panels": [
+      {
+        "alt": "窄巷里，潘潘和一只橘白猫对面走来，正要侧身相让。"
+      },
+      {
+        "alt": "两只又换了一边，还是迎面碰上。",
+        "caption": "哦。",
+        "position": "top-right"
+      },
+      {
+        "alt": "潘潘和橘白猫都停住，隔着一块石砖对看。"
+      },
+      {
+        "alt": "潘潘往旁边的岔巷退去，橘白猫留在原地坐下。",
+        "caption": "我本来就要走这条。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "tuo-xie",
+    "title": "拖鞋",
+    "intro": "地板很凉，潘潘只找到一只拖鞋。",
+    "place": "小屋",
+    "panels": [
+      {
+        "alt": "潘潘坐在床沿，低头看着地上唯一一只砖红拖鞋。",
+        "caption": "……凉。",
+        "position": "top-left"
+      },
+      {
+        "alt": "他穿着这一只拖鞋，单脚往窗边的小木桌跳。"
+      },
+      {
+        "alt": "他蹲下发现另一只拖鞋正垫在桌脚下。",
+        "caption": "桌子也只有一只。",
+        "position": "top-right"
+      },
+      {
+        "alt": "两只拖鞋都垫在桌脚下，潘潘赤脚站在地板上，按了按桌面。",
+        "caption": "这下你有一双了。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "di",
+    "title": "嘀",
+    "intro": "打包点今天的第一箱，扫码枪没出声。",
+    "place": "打包点",
+    "panels": [
+      {
+        "alt": "潘潘举起扫码枪，对着纸箱的条码。枪的插头还搁在桌上。"
+      },
+      {
+        "alt": "他把纸箱转了个角度，举起扫码枪又试一次。"
+      },
+      {
+        "alt": "潘潘把箱子举到眼前，盯着扫码枪。",
+        "caption": "你醒着吗。",
+        "position": "top-right"
+      },
+      {
+        "alt": "纸箱放回了桌上，枪线的插头仍没插。潘潘张嘴替它嘀了一声。",
+        "caption": "嘀。\n老板：潘潘，线插上。",
+        "position": "top-right"
+      }
+    ]
+  },
+  {
+    "slug": "zhi-jin",
+    "title": "纸巾",
+    "intro": "小面馆里，潘潘只想要一张纸巾。",
+    "place": "小面馆",
+    "panels": [
+      {
+        "alt": "潘潘从桌上的铁皮纸巾盒里往外抽，带出好几张白纸。",
+        "caption": "……三张。",
+        "position": "top-left"
+      },
+      {
+        "alt": "他留下一张，把多出来的纸按回盒口。"
+      },
+      {
+        "alt": "他手刚松开，纸又从盒口冒出来。",
+        "caption": "噗。",
+        "position": "top-right"
+      },
+      {
+        "alt": "他把多余的纸巾叠齐，留在桌边的小碟里。",
+        "caption": "塞回去，\n下个人会抽出五张。",
+        "position": "top-right"
+      }
+    ]
+  }
+]

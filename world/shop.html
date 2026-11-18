@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f0e5">
+<title>潘潘杂货铺 · 网店</title>
+<link rel="stylesheet" href="game.css">
+<link rel="stylesheet" href="variety-shop.css">
+<script src="variety-shop.js" defer></script>
+</head>
+<body class="shop-page">
+<main class="shop-wrap">
+    <header class="shop-top">
+        <a href="./?visit=variety-shop">← 回巷尾杂货铺</a>
+        <button class="text-button" type="button" id="shop-open-bag" aria-haspopup="dialog">购物袋 · 0</button>
+    </header>
+    <section class="shop-hero" aria-label="巷尾杂货铺">
+        <div><img src="../assets/panpan-2d/portrait.webp" alt=""><h1>潘潘杂货铺</h1></div>
+    </section>
+    <section aria-label="商品">
+        <div class="shop-toolbar">
+            <nav class="goods-filters" id="goods-filters" aria-label="商品分类">
+                <button type="button" class="text-button" data-group="all" aria-pressed="true">全部</button>
+                <button type="button" class="text-button" data-group="panpan" aria-pressed="false">潘潘周边</button>
+                <button type="button" class="text-button" data-group="daily" aria-pressed="false">生活小物</button>
+            </nav>
+            <span>示例售价</span>
+        </div>
+        <div class="goods-grid" id="goods-grid"></div>
+    </section>
+</main>
+<dialog id="shop-sheet" aria-labelledby="shop-sheet-title">
+    <header class="sheet-head">
+        <h2 id="shop-sheet-title"></h2>
+        <button type="button" class="sheet-close" id="shop-close" aria-label="关闭">×</button>
+    </header>
+    <div id="shop-sheet-body"></div>
+</dialog>
+<script>window.addEventListener('DOMContentLoaded',()=>PanpanShop.storePage());</script>
+</body>
+</html>

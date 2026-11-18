@@ -1,0 +1,64 @@
+.variety-shelf-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; color:#685749; font-size:13px; }
+.variety-shelf-head a { text-decoration:none; }
+.goods-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(8px,2.1vw,23px); }
+.goods-card {
+    display:grid; min-width:0; padding:0; text-align:left; color:#332a25; text-decoration:none;
+    border:1px solid #60412424; border-radius:9px; overflow:hidden; background:#fffaf4;
+}
+.goods-card:hover { border-color:#a46d59; }
+.goods-art {
+    display:block; width:100%; aspect-ratio:1; background:#ead9c5 var(--product-sheet,url('../assets/variety-products.webp')) no-repeat;
+    background-size:300% 200%; background-position:var(--product-x) var(--product-y);
+}
+.goods-copy { display:grid; gap:4px; padding:11px; }
+.goods-copy strong { font-size:clamp(13px,1.55vw,18px); font-weight:700; line-height:1.32; }
+.goods-copy > span { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:4px; color:#665749; font-size:12px; }
+.goods-copy b { color:#8b4234; font-size:14px; }
+.shop-page { color-scheme:light; background:#f8f0e5; color:#372d26; }
+.shop-wrap { width:min(1080px,calc(100% - 44px)); margin:0 auto; padding-bottom:32px; }
+.shop-top, .shop-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 0; }
+.shop-top a { color:#6f483b; font-size:14px; text-decoration:none; }
+.shop-top a:hover { text-decoration:underline; }
+.shop-hero {
+    display:flex; min-height:220px; align-items:flex-end; border-radius:12px; overflow:hidden;
+    background:linear-gradient(90deg,#34241cdd 0%,#3f312267 44%,transparent 76%),
+        url('../assets/inside-variety-shop.webp') center 52%/cover no-repeat;
+    color:#fff3dc;
+}
+.shop-hero > div { display:flex; align-items:center; gap:12px; padding:19px 23px; }
+.shop-hero img { width:40px; height:40px; object-fit:cover; border-radius:50%; background:#e8d3b0; }
+.shop-hero h1 { margin:0; font:700 clamp(25px,4.5vw,45px) var(--serif); text-shadow:0 1px 8px #21180e; }
+.shop-toolbar { color:#675446; font-size:13px; }
+.goods-filters { display:flex; flex-wrap:wrap; gap:6px; }
+.goods-filters [aria-pressed="true"] { background:#80483b; border-color:#80483b; color:#fff4e9; }
+#shop-sheet-body { padding:16px 20px 21px; }
+.shop-product { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); align-items:center; gap:19px; }
+.shop-product .goods-art { border-radius:7px; }
+.shop-product h3 { margin:5px 0 7px; font:700 24px/1.25 var(--serif); }
+.shop-product p { margin:0 0 8px; color:#655448; }
+.shop-product strong { display:block; color:#8e4234; font-size:21px; }
+.shop-product-actions { display:flex; flex-wrap:wrap; gap:7px; margin:12px 0 0; }
+.shop-product-actions button:first-child,.shop-bag-total button { background:#80483b; border-color:#80483b; color:#fff4e9; }
+.shop-message:not(:empty) { margin:9px 0 0; }
+.shop-bag-list,.shop-receipt ul { list-style:none; padding:0; margin:0; }
+.shop-bag-list li,.shop-bag-total,.shop-receipt li { display:flex; justify-content:space-between; align-items:center; gap:9px; padding:9px 0; border-bottom:1px solid #764d301d; }
+.shop-bag-list small { display:block; color:#6c5a48; }
+.shop-bag-total { flex-wrap:wrap; border-bottom:0; margin-top:7px; }
+.bag-stepper { display:flex; align-items:center; gap:8px; flex:none; }
+.bag-stepper button { min-width:33px; }
+.shop-receipt p { margin-top:0; }
+.shop-receipt > strong { display:block; padding-top:12px; text-align:right; }
+.shop-empty { margin:8px 0; }
+@media(max-width:620px){
+    .shop-wrap { width:calc(100% - 24px); }
+    .shop-hero { min-height:150px; }
+    .shop-hero > div { padding:13px 12px; }
+    .goods-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .goods-copy { padding:8px; }
+    .shop-toolbar { align-items:flex-start; }
+    .shop-toolbar > span { padding-top:7px; white-space:nowrap; }
+    .shop-product { gap:10px; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); }
+    .shop-product h3 { font-size:18px; }
+    .shop-product p { font-size:13px; }
+    #shop-sheet-body { padding:11px 13px 15px; }
+}
