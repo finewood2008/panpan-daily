@@ -192,11 +192,9 @@ const PanpanActor = (() => {
             ['receipt-transfer','receipt-reach-v2',2],
             ['parcel-arrival','parcel-arrival',3],['cable-arrival','cable-arrival',3],
             ...Object.keys(bits).map(name=>[name,fortuneBits.has(name)?'fortune-gestures':photoBits.has(name)?`${name}-aligned`:name==='sales-bow'?'sales-bow-v2':name==='shower-cap'?'shower-cap-activity-v2':name==='backward-stamp'?'backward-stamp-v3':name==='parcel-check'?'parcel-check-v3':name==='rag-crown'?'rag-salute-v1':name==='alarm-hush'?'alarm-hush-v2':name==='dumbbell-brag'?'dumbbell-brag-v2':name==='spoon-concert'?'spoon-concert-v2':name==='toothbrush-guitar'?'toothbrush-guitar-v2':name==='parcel-pile'?'parcel-pile-v2':name==='stuck-tape'?'stuck-tape-v2':name==='uneven-chopsticks'?'uneven-chopsticks-v2':foodBits.has(name)||['umbrella-flip','soap-moustache','wobble','leaf-salute'].includes(name)?`${name}-v2`:`${name}-bit`,2])];
-        const sheets = Object.fromEntries(files.map(([name,file,rows]) => {
-            const image = new Image();
-            image.src = `../assets/panpan-2d/${file}.webp`;
-            return [name,{image,rows}];
-        }));
+        const sheets = Object.fromEntries(files.map(([name,file,rows]) => [
+            name,{url:`../assets/panpan-2d/${file}.webp`,rows},
+        ]));
         let pose;
         let anchor;
         let scene;
@@ -237,8 +235,8 @@ const PanpanActor = (() => {
         function paint(name, frame, lean, flip=false, gameTime=0, lift=0) {
             const changed=name!==sheet;
             if(changed){
-                const {image,rows}=sheets[name];
-                actor.style.backgroundImage=`url("${image.src}")`;
+                const {url,rows}=sheets[name];
+                actor.style.backgroundImage=`url("${url}")`;
                 actor.style.backgroundSize=`600% ${rows*100}%`;
                 sheet=name;
             }

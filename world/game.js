@@ -98,11 +98,18 @@
     const foreground=$('foreground');
     const bathroomDoorLeaf=$('bathroom-door-leaf');
     const locationIds=Object.keys(scenes).filter(id=>scenes[id].entry);
-    const interiors=Object.fromEntries([...locationIds,'bathroom'].map(id=>{
-        const image=new Image();
-        image.src='../assets/'+scenes[id].image+'.webp';
-        return [id,image];
-    }));
+    const interiors=new Map();
+    function loadInterior(id){
+        if(!interiors.has(id)){
+            const image=new Image();
+            image.src='../assets/'+scenes[id].image+'.webp';
+            interiors.set(id,image);
+        }
+        return interiors.get(id).decode().catch(error=>{
+            interiors.delete(id);
+            throw error;
+        });
+    }
     const sceneProps=new Map([...scenery.querySelectorAll('.scene-prop')].map(button=>[button.dataset.place,button]));
     const fortuneDesk=$('fortune-desk');
     const fortuneHost=$('fortune-host');
@@ -726,9 +733,8 @@
         const camera=fromMap&&scenes[id].entry?mapView.setFocus(scenes[id].entry.view,animate):undefined;
         try{
             await Promise.all([
-                camera,interiors[id].decode(),
+                camera,loadInterior(id),
                 id==='bathroom'?showerCurtain.decode():undefined,
-                id==='stall'?PanpanComicStall.loadDisplay($('stall-covers')):undefined,
                 id==='fortune'?PanpanFortuneStall.prepare():undefined,
             ]);
         }catch{
@@ -745,6 +751,7 @@
         }
         if(destination!==request) return;
         showPlace(id,action,arrival);
+        if(id==='stall') PanpanComicStall.loadDisplay($('stall-covers'));
     }
 
     for(const id of locationIds){
