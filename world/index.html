@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#191f22">
+<title>巷子 · 潘潘的小日子</title>
+<link rel="stylesheet" href="/panpan-daily/game.css?v=independent">
+<script src="/panpan-daily/world-time.js" defer></script>
+<script src="/panpan-daily/world.js" defer></script>
+<script src="/panpan-daily/map-view.js" defer></script>
+<script src="/panpan-daily/scene-effects.js" defer></script>
+<script src="/panpan-daily/alley.js" defer></script>
+<script src="/panpan-daily/interior-effects.js" defer></script>
+<script src="/panpan-daily/ambience.js" defer></script>
+<script src="/panpan-daily/panpan-actor.js" defer></script>
+<script src="/panpan-daily/game.js?v=independent" defer></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true">
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7M6 10v10h12V10m-8 10v-6h4v6"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14m6-12v14"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+<symbol id="i-visit" viewBox="0 0 24 24"><path d="M12 20.5 4.4 13a4.8 4.8 0 0 1 6.8-6.8l.8.8.8-.8a4.8 4.8 0 0 1 6.8 6.8z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.1"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+</svg>
+<main class="game">
+<header class="masthead world-header">
+    <a class="brand world-brand" href="/panpan-daily/"><img src="/panpan-daily/assets/panpan-2d/portrait.webp" width="40" height="40" alt=""><span>潘潘的小日子</span></a>
+    <button class="clock" id="clock-button" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="查看时间和天气"><svg aria-hidden="true"><use href="#i-clock"/></svg><span id="clock"></span></button>
+    <a class="world-comics" href="/panpan-daily/comics/">漫画</a>
+    <button id="about" class="icon-button" aria-label="来访说明" type="button"><svg aria-hidden="true"><use href="#i-info"/></svg></button>
+</header>
+
+<section class="stage" id="stage" data-scene="alley" aria-label="潘潘的生活场景">
+    <div class="panorama" id="panorama" tabindex="0" aria-label="左右拖动街景，或用方向键移动">
+        <div class="city-art" id="city-art">
+            <div class="city-world">
+                <img class="city-picture" id="city-picture" src="/panpan-daily/assets/neighborhood-no-stool.webp" alt="高楼环绕的老城中村，窄巷从核心街区向两侧延伸" draggable="false">
+                <canvas id="alley-ambience" class="alley-ambience" aria-hidden="true"></canvas>
+                <div class="street-character" id="street-character"></div>
+            </div>
+            <div id="hotspots" class="hotspots" role="group" aria-label="街坊地点"></div>
+        </div>
+    </div>
+    <div class="scenery">
+        <img class="setting" id="setting" src="/panpan-daily/assets/room-raised-computer-stool.webp" alt="">
+        <img id="shower-curtain" class="setting" src="/panpan-daily/assets/bathroom-curtain.webp" alt="淋浴帘已拉上" hidden>
+        <canvas id="window-view" class="window-view" width="1672" height="941" aria-hidden="true"></canvas>
+        <canvas id="interior-ambience" class="interior-ambience" aria-hidden="true"></canvas>
+        <div class="shadow" id="shadow" hidden></div>
+        <div class="actor" id="actor" role="img" aria-label="潘潘" hidden></div>
+        <canvas class="sleep-frame" id="sleep-frame" width="1672" height="941" role="img" aria-label="潘潘躺在床上" hidden></canvas>
+        <div class="foreground" id="foreground" aria-hidden="true" hidden></div>
+        <div class="veil"></div>
+        <div class="warmth"></div>
+    </div>
+    <header class="location">
+        <div id="address" class="address">深圳 · 城中村</div>
+        <h2 id="place">城中村的巷子</h2>
+        <span id="presence" class="presence" hidden></span>
+        <button id="bathroom-door" class="replay-entry" type="button" hidden>卫生间</button>
+        <button id="bathroom-back" class="replay-entry" type="button" hidden>回小屋</button>
+    </header>
+    <p class="thought-bubble" id="thought-bubble" role="status" hidden></p>
+    <article class="note" id="note" hidden>
+        <div class="note-copy"><p id="note-tag" class="note-tag"></p><p id="note-line" class="note-line" aria-live="polite"></p></div>
+    </article>
+</section>
+<nav class="map-camera" id="map-camera" aria-label="街景视角">
+    <button type="button" data-view="west" aria-label="向左看">←</button>
+    <button type="button" data-view="center">回到巷子</button>
+    <button type="button" data-view="east" aria-label="向右看">→</button>
+</nav>
+<nav class="dock" aria-label="潘潘世界">
+    <button type="button" id="home" aria-pressed="false"><svg aria-hidden="true"><use href="#i-home"/></svg><span>小屋</span></button>
+    <button type="button" id="map" aria-pressed="true"><svg aria-hidden="true"><use href="#i-map"/></svg><span>巷子</span></button>
+    <button type="button" id="visit" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#i-visit"/></svg><span>看潘潘</span></button>
+    <button type="button" id="journal" aria-haspopup="dialog"><svg aria-hidden="true"><use href="#i-mail"/></svg><span>生活手记</span></button>
+</nav>
+</main>
+<dialog id="sheet" aria-labelledby="sheet-title">
+    <header class="sheet-head"><h2 id="sheet-title"></h2><button id="close" type="button" class="sheet-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button></header>
+    <div id="sheet-body"></div>
+</dialog>
+</body>
+</html>

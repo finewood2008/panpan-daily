@@ -1,0 +1,70 @@
+.strip {
+  display:grid;
+  gap:14px;
+  margin:14px 0 0;
+}
+.comic-panel {
+  margin:0;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #cbb09c;
+  border-radius:9px;
+  background:#fff8ec;
+  box-shadow:0 2px 5px #4f33200d;
+}
+.comic-panel>img {
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:3/2;
+  background:#574041;
+}
+.comic-panel figcaption {
+  padding:12px 15px;
+  border-top:1px solid #cbb09c;
+  font-size:16px;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+}
+.comic-panel figcaption p {margin:0}
+.comic-narration {color:#654a3e}
+.comic-line {
+  padding-left:10px;
+  border-left:2px solid #ab6552;
+  color:var(--ink);
+  font-weight:700;
+}
+.comic-narration+.comic-line {margin-top:6px}
+.comic-message-label {
+  display:block;
+  color:#654a3e;
+  font-size:13px;
+  font-weight:650;
+}
+@media (min-width:660px) {
+  .strip {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+.comic-catalogue{max-width:820px}
+.comic-catalogue-heading{padding:4px 2px 12px}
+.comic-catalogue-heading p{margin:0 0 4px;color:#644436}
+.comic-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:0;padding:0;list-style:none}
+.comic-grid li{display:flex;min-width:0}
+.comic-card{display:block;width:100%;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#fff6e8;text-decoration:none}
+.comic-card:hover{border-color:#9e5544}
+.comic-card img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:#5b403a}
+.comic-card-copy{padding:10px 13px 14px}
+.comic-card-copy p{margin:0;color:#694638;font-size:13px}
+.comic-card-copy p:first-child{font-size:11px;letter-spacing:.04em;color:#865143}
+.comic-card h2{margin:2px 0 5px;font:700 clamp(20px,4.6vw,28px)/1.23 var(--serif)}
+.comic-card-video{display:inline-block;margin-left:.6em;padding-left:.6em;border-left:1px solid #c6a38e;font-weight:700}
+.comic-back{display:inline-flex;align-items:center;min-height:44px;margin-bottom:7px;color:#743c30;font-size:14px}
+.strip-story .story-heading h1{font-size:clamp(40px,10vw,75px);letter-spacing:-.04em}
+.strip-film{margin-top:24px;scroll-margin-top:12px}
+.strip-film h2{margin:0 0 10px;font:700 25px/1.3 var(--serif)}
+.strip-film details p{margin:6px 0 0}
+@media(max-width:600px){
+ .comic-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .comic-card-copy{padding:8px 9px 11px}
+ .comic-card-copy p{font-size:12px}
+}
